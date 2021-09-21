@@ -1,0 +1,206 @@
+<! -- PARCIAL REALIZADO POR DANIEL EDUARDO ORTIZ CELIS - 2171469 - PROGRAMACION EN LA WEB - GRUPO H1 - PROFESOR
+  JATHINSON MENESES -->
+  <!DOCTYPE html>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".dropdown-item").click(function () {
+        var valor = $(this).text();
+
+        $(".dropdown-toggle").html(valor + '&nbsp;<span class="caret"></span>')
+      })
+    })
+  </script>
+
+  <style>
+    .center {
+      text-align: center;
+      border: 3px solid rgb(255, 255, 255);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    input.formulario {
+      width: 60%;
+      padding: 12px 20px;
+      margin: 6px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type=email],
+    select {
+      width: 60%;
+      padding: 12px 20px;
+      margin: 4px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    html {
+      background-color: rgb(212, 212, 212);
+
+
+    }
+
+    body {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Lucida Console", "Courier New", monospace;
+      text-align: justify;
+      border-collapse: collapse;
+      background-color: rgb(255, 255, 255);
+      border: 5px solid darkblue;
+      min-height: 150px;
+      width: 1000px;
+
+    }
+
+    th {
+      padding: 10px;
+      font-weight: normal;
+      padding: 10px;
+      background: #ffffff;
+      border-top: 4px solid #bfc9d2;
+      border-bottom: 1px solid #a2a3a6;
+      color: rgb(0, 0, 0);
+      border-left: 1px solid #a2a3a6;
+      color: rgb(0, 0, 0);
+      border-right: 1px solid #a2a3a6;
+      color: rgb(0, 0, 0);
+    }
+
+    td {
+      padding: 10px;
+      background: #ffffff;
+      border-bottom: 1px solid rgb(126, 122, 122);
+      color: rgb(7, 7, 7);
+      border-top: 1px solid #bfc9d2;
+      border-left: 1px solid #a2a3a6;
+      color: rgb(0, 0, 0);
+      border-right: 1px solid #a2a3a6;
+      color: rgb(0, 0, 0);
+    }
+
+    tr:hover td {
+      background: #fefeff;
+      color: rgb(17, 17, 17);
+    }
+
+    .editar {
+      color: rgb(76, 44, 255);
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript">
+    var edicion = false;
+    function editable(nodo) {
+      if (edicion == false) {
+        var nodoTd = nodo.parentNode;
+        var nodoTr = nodoTd.parentNode;
+        var nodobotones = document.getElementById('botones');
+        var nodostabla = nodoTr.getElementsByTagName('td');
+        var gustos = nodostabla[1].textContent;
+        var porcentaje = nodostabla[2].textContent;
+        var editar = nodostabla[3].textContent;
+        var nuevoCodigoHtml = '<td colspan="3"><img src="https://www.greenflag.com/img/logos/greenflag-icon-only.png" height ="20" width="40"/></td><td><input type="text" name="gusto" id="gusto" value="' + gustos + '" size="30"></td>' +
+          '<td><input type="number" name="porcentaje" id="porcentaje" value="' + porcentaje + '" size="5"</td>' +
+          '<td>En endicion</td>'
+
+        nodoTr.innerHTML = nuevoCodigoHtml;
+        nodobotones.innerHTML = 'Pulse Aceptar para guardar los cambios o cancelar para refrescar la pagina' +
+          '<form name = "formulario" action="PagResul_DanielEduardoOrtizCelis_2171469.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">' +
+          '<input class="boton" type = "submit" value="Aceptar"> <input class="boton" type="reset" value="Cancelar">';
+
+      }
+      //En esta parte se nos pedia que Si estando seleccionada una fila en edición el usuario pulsa sobre Editar en otra fila, se mostrará unmensaje indicando lo siguiente:
+      // “Solo se puede editar una línea. Recargue la página para poder editar otra”., en este caso lo que le faltaria al if seria esta condicion pero no la puse porque no logre una funcion que me 
+      // permitiera añadir elementos a la tabla, si acaso la parte para cumplir el requerimiento seria esta 
+        //  else {
+          // alert ('Solo puede editar una fila a la vez si quiere recargue o dele en cancelar');
+          //     }
+      
+    }
+    function capturarEnvio() {
+      var nodobotones = document.getElementById('botones');
+      nodobotones.innerHTML = 'Pulse Aceptar para guardar los cambios o cancelar para no hacerlo y refrescar' +
+        '<form name = "formulario" action="PagResul_DanielEduardoOrtizCelis_2171469.html" method="get" onsubmit="capturarEnvio()" onreset="anular()">' +
+        '<input type="hidden" name="nombre" value="' + document.querySelector('#nombre').value + '">' +
+        '<input type="hidden" name="email" value="' + document.querySelector('#email').value + '">' +
+        '<input type="hidden" name="telefono" value="' + document.querySelector('#telefono').value + '">' +
+        '<input type="hidden" name="gusto" value="' + document.querySelector('#gusto').value + '">' +
+        '<input type="hidden" name="porcentaje" value="' + document.querySelector('#porcentaje').value + '">' +
+        '<input class="boton" type = "submit" value="Aceptar"> <input class="boton" type="reset" value="Cancelar">';
+      document.formulario.submit();
+
+    }
+    function anular() {
+      window.location.reload();
+    }
+
+    function addField(n) {
+      var tr = n.parentNode.parentNode.cloneNode(true);
+      document.getElementById('tbl').appendChild(tr);
+    }
+  </script>
+  <html>
+
+  <head>
+    <title>Parcial1 Daniel Eduardo Ortiz Celis 2171469</title>
+  </head>
+  <caption>
+    <h2>Web Developer</h2>
+  </caption>
+
+  <body class="center">
+
+    <table id="tbl" class="center">
+      <div>Formulario de afiliacion</div>
+      <div><input type="text" name="nombre" id="nombre" placeholder="Nombre Completo" class="formulario"><svg
+          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge"
+          viewBox="0 0 16 16">
+          <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path
+            d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+        </svg>
+        <div>
+          <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            placeholder="Email"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-envelope-fill" viewBox="0 0 16 16">
+            <path
+              d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
+          </svg>
+        </div>
+        <div>
+          <input type="text" name="telefono" id="telefono" placeholder="Telefono" class="formulario"><svg
+            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+          </svg>
+        </div>
+        <tr>
+          <th><img src="https://www.greenflag.com/img/logos/greenflag-icon-only.png" height="20" width="40" /> </th>
+          <th>Gustos</th>
+          <th>Porcentaje</th>
+          <th>Editar</th>
+        </tr>
+        <tr>
+          <td><img src="https://www.greenflag.com/img/logos/greenflag-icon-only.png" height="20" width="40" /></td>
+          <td></td>
+          <td></td>
+          <td><span class="editar" onclick="editable(this)">Editar</span></td>
+          <td><input type="submit" class="button" value="Añadir otro Gusto" onclick="addField(this);" /></td>
+        </tr>
+    </table>
+
+  </body>
+  <div id="botones"></div>
+
+  </html>

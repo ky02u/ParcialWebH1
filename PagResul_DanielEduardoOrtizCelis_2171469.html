@@ -1,0 +1,96 @@
+<! -- PARCIAL REALIZADO POR DANIEL EDUARDO ORTIZ CELIS - 2171469 - PROGRAMACION EN LA WEB - GRUPO H1 - PROFESOR
+    JATHINSON MENESES -->
+    <!DOCTYPE html>
+    <title>Parcial1 Daniel Eduardo Ortiz Celis 2171469</title>
+    <style>
+        body {
+            font-family: "Lucida Console", "Courier New", monospace;
+            text-align: justify;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 12px;
+            font-weight: normal;
+            padding: 10px;
+            background: #17a2b7;
+            border-top: 4px solid #bfc9d2;
+            border-bottom: 1px solid #a2a3a6;
+            color: rgb(255, 255, 255);
+        }
+
+        td {
+            padding: 12px;
+            background: #f7f7f7;
+            border-bottom: 1px solid #fff;
+            color: #778ec0;
+            border-top: 1px solid transparent;
+        }
+    </style>
+
+    <h2 align="center">Resultado</h2>
+
+    <script type="text/javascript">
+        function getParameterByName(name, url = window.location.href) { // esta funcion extraida de https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        var Nombre = getParameterByName('nombre');
+        var Email = getParameterByName('email');
+        var Telefono = getParameterByName('telefono');
+        var Gusto = getParameterByName('gusto');
+        var Porcentaje = getParameterByName('porcentaje');
+
+    </script>
+
+    <body>
+
+        <table align="center">
+            <tr>
+                <th align="center"> &#128522
+                    <script type="text/javascript">
+                        document.write(Nombre)
+                    </script>
+                    <h1></h1>
+                    Ficha
+                </th>
+
+            </tr>
+
+            <tr>
+                <td> Email:
+                    <script type="text/javascript">
+                        document.write(Email)
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Telefono:
+                    <script type="text/javascript">
+                        document.write(Telefono)
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gusto:
+                    <script type="text/javascript">
+                        document.write(Gusto)
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Porcentaje:
+                    <script type="text/javascript">
+                        document.write(Porcentaje)
+                    </script>
+        </table>
+        </td>
+        </tr>
+    </body>
